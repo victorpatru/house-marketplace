@@ -6,6 +6,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
@@ -112,7 +113,6 @@ function CreateListing() {
     } else {
       geolocation.lat = latitude;
       geolocation.lng = longitude;
-      location = address;
     }
 
     // Store images in firebase
@@ -165,7 +165,22 @@ function CreateListing() {
       return;
     });
 
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+      geolocation,
+      timestamp: serverTimestamp(),
+    };
+
+    formDataCopy.location = address;
+    delete formDataCopy.images;
+    delete formDataCopy.address;
+    !formDataCopy.offer && delete formDataCopy.discountedPrice;
+
+    const docRef = await addDoc(collection(db, "listings"), formDataCopy);
     setLoading(false);
+    toast.success("Listing added!");
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
 
   const onMutate = (e) => {
@@ -363,11 +378,11 @@ function CreateListing() {
                 />
               </div>
               <div>
-                <label className="formLabel">Longitutde</label>
+                <label className="formLabel">Longitude</label>
                 <input
                   type="number"
                   className="formInputSmall"
-                  id="longitutde"
+                  id="longitude"
                   value={longitude}
                   onChange={onMutate}
                   required
