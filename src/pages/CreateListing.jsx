@@ -3,7 +3,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
-import { async } from "@firebase/util";
 
 function CreateListing() {
   const [geolocationEnabled, setGetlocationEnabled] = useState(false);
@@ -156,6 +155,9 @@ function CreateListing() {
               id="type"
               value="sale"
               onClick={onMutate}
+              style={{
+                cursor: "pointer",
+              }}
             >
               Sell
             </button>
@@ -166,6 +168,9 @@ function CreateListing() {
               id="type"
               value="rent"
               onClick={onMutate}
+              style={{
+                cursor: "pointer",
+              }}
             >
               Rent
             </button>
@@ -221,6 +226,9 @@ function CreateListing() {
               id="parking"
               value={true}
               onClick={onMutate}
+              style={{
+                cursor: "pointer",
+              }}
             >
               Yes
             </button>
@@ -232,6 +240,9 @@ function CreateListing() {
               id="parking"
               value={false}
               onClick={onMutate}
+              style={{
+                cursor: "pointer",
+              }}
             >
               No
             </button>
@@ -246,6 +257,9 @@ function CreateListing() {
               id="furnished"
               value={true}
               onClick={onMutate}
+              style={{
+                cursor: "pointer",
+              }}
             >
               Yes
             </button>
@@ -259,6 +273,9 @@ function CreateListing() {
               id="furnished"
               value={false}
               onClick={onMutate}
+              style={{
+                cursor: "pointer",
+              }}
             >
               No
             </button>
@@ -309,6 +326,9 @@ function CreateListing() {
               id="offer"
               value={true}
               onClick={onMutate}
+              style={{
+                cursor: "pointer",
+              }}
             >
               Yes
             </button>
@@ -320,6 +340,9 @@ function CreateListing() {
               id="offer"
               value={false}
               onClick={onMutate}
+              style={{
+                cursor: "pointer",
+              }}
             >
               No
             </button>
