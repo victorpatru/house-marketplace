@@ -13,6 +13,7 @@ import SignUp from "./pages/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import CreateListing from "./pages/CreateListing";
 import Listing from "./pages/Listing";
+import EditListing from "./pages/EditListing";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             path="/category/:categoryName/:listingId"
             element={<Listing />}
           />
+          <Route path="/edit-listing/:listingId" element={<EditListing />} />
         </Routes>
         <NavBar />
       </Router>
